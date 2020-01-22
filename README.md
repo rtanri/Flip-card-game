@@ -16,8 +16,10 @@ To play the game, you can open the index.html file. Web-page is responsive to ip
 4. You will win when you open all the cards,
 5. You will lose when the number of stars become zero.
 ```
+<div align="center">
+    <img src="/images/game.png" width="400px"</img> 
+</div>
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
 
 ## Contributing
 
