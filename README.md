@@ -16,7 +16,7 @@ To play the game, you can open the index.html file. Web-page is responsive to ip
 5. You will lose when the number of stars become zero.
 
 <div align="center">
-    <img src="/images/game.png" width="400px"</img> 
+    <img src="/img/game.png" width="400px"</img> 
 </div>
 
 
