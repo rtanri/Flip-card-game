@@ -167,12 +167,17 @@ function reset(){
     for (var n=0; n < cardInBox.length; n++) {
         cardInBox[n].classList.remove("open", "show", "match");
     };
+    myStopFunction();
     shuffleCard();
     addStars();
     count = 0;
     document.querySelector('.moves').textContent = count;
+
     totalSeconds = 0;
-    // this.interval = setInterval(setTime, 1000);
+    minutesLabel.innerHTML = '00'
+    secondsLabel.innerHTML = '00'
+
+    this.interval = setInterval(setTime, 1000);
 }
 
 
@@ -189,8 +194,8 @@ function endLose() {
 function endWin() {
   if (provenCards.length === myCards.length) { 
         myStopFunction();
-        var starsleft = document.getElementsByClassName("fa-star").length;     
-        newSpan.textContent ='Congrats!!  You win with ' + count + ' moves, time: ' + minutesLabel.innerText + ':'+ secondsLabel.innerText + ', and ' + starsleft + ' stars remaining.';
+        var starLeft = document.getElementsByClassName("fa-star").length;     
+        newSpan.textContent ='Congrats!!  You win with ' + count + ' moves, time: ' + minutesLabel.innerText + ':'+ secondsLabel.innerText + ', and ' + starLeft + ' stars remaining.';
         para.appendChild(newSpan);
         modal.style.display = "block";
   };
@@ -239,7 +244,7 @@ const onClick = (event) => {
 } 
 
 
-//fucntion to check 2 chosen cards: Match or not Match
+//function to check 2 chosen cards: Match or not Match
 function checkCard(event) {
 if (selectedCards[1] !== undefined) {
     if (idChecking[0] === idChecking[1]) {
@@ -271,7 +276,7 @@ if (selectedCards[1] !== undefined) {
 
 
         } else if (selectedCards[0] !== selectedCards[1]) {
-            console.log("Cards didnot match");
+            console.log("Cards did not match");
             document.getElementsByClassName("open")[1].classList.replace("open", "wrong");
             document.getElementsByClassName("open")[0].classList.replace("open", "wrong");
 
@@ -285,7 +290,7 @@ if (selectedCards[1] !== undefined) {
             },1000);
             
 
-            // remove star one by one that represented the remaining lifes of player
+            // remove star one by one that represented the remaining lives of player
             if (document.querySelector("ul").childElementCount === 1) {
                 setTimeout(function(){
                     endLose();}, 1100);
@@ -297,15 +302,32 @@ if (selectedCards[1] !== undefined) {
 } }
 
 
+const handleRestart = () => {
+    for (var n=0; n < cardInBox.length; n++) {
+        cardInBox[n].classList.remove("open", "show", "match");
+    };
+    shuffleCard();
+    addStars();
+    count = 0;
+    document.querySelector('.moves').textContent = count;
 
+    totalSeconds = 0;
+    minutesLabel.innerHTML = '00'
+    secondsLabel.innerHTML = '00'
+
+    this.interval = setInterval(1000);
+}
+
+
+var restartButton = document.querySelector('div .restart i');
+restartButton.addEventListener('click', handleRestart);
 
 
 //FOR Loops to add event listener in multiple cards needs a FOR loops
 shuffleCard();
 for (var i=0; i< cardInBox.length; i++){
     cardInBox[i].addEventListener('click', onClick);
-    var resetButton = document.querySelector('div .restart i');
-    resetButton.addEventListener('click', reset);
+
 }
 
 //gameEnd();
